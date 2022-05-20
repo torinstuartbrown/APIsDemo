@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New York Times Movie Reviews</title>
+    <div th:replace="fragments :: header"/>
+</head>
+<tbody>
+<div align="center">
+    <h1>Movie Reviews</h1>
+
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+
+            <th>Title</th>
+            <th>MPAA Rating</th>
+            <th>Link</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="result : ${reviewList}">
+            <td th:text="${result.display_title;}">Title</td>
+            <td th:text="${result.mpaa_rating}">Rating</td>
+            <a th:href="${results.link}" class="btn btn-primary">Read Review..</a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+</div>
+</tbody>
+
+</html>

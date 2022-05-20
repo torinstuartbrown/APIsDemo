@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New York Times Movie Reviews</title>
+    <div th:replace="fragments :: header"/>
+</head>
+<body>
+<div th:replace="fragments :: navigation"/>
+<div class="container">
+    <div class="bg-light p-4 rounded m-2">
+        <h1 class="display-4">NYT Movie Reviews And Critic Recommendations:</h1>
+        <th:block th:unless="${reviewList.isEmpty()}">
+            <div class="row justify-content-center">
+                <div class="col-auto" th:each="result: ${reviewList}">
+                    <div class="card" style="width: 18rem; height: 15rem;">
+<!--                        <img th:unless="${result.imageUrl == null}" th:src="${article.imageUrl}" class="card-img-top">-->
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${result.display_title}">title</h5>
+                            <p class="card-text" th:text="${result.mpaa_rating}">Rating</p>
+                            <p class="card-text" th:text="${result.headline}">headline</p>
+
+                            <a th:href="${result.link}" class="btn btn-primary">Read Review</a>
+                            <h5 class="card-text" th:text="${result.recommended}">Pick</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+<div th:replace="fragments :: footer"/>
+</body>

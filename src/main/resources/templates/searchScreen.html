@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New York Times API Demo</title>
+    <div th:replace="fragments :: header"/>
+</head>
+<body>
+<div th:replace="fragments :: navigation"/>
+<div class="container">
+    <div class="bg-light p-4 rounded m-2">
+        <h1 class="display-4">NYT Article Search</h1>
+
+<!--        <form id="form">-->
+<!--            <input type="search" id="query" name="q" placeholder="Search...">-->
+
+
+<!--            <button>Search</button>-->
+<!--        </form>-->
+
+        <form th:action="@{/search}">
+            <input type="text" th:name="q"/>
+            <input type="text" th:name="test"/>
+            <input type="submit"/>
+
+        </form>
+
+        <th:block th:unless="${searchResults.isEmpty()}">
+            <div class="row justify-content-center">
+                <div class="col-auto" th:each="doc: ${searchResults}">
+                    <div class="card" style="width: 18rem; height: 34rem;">
+                        <img th:unless="${doc.imageUrl == null}" th:src="${doc.imageUrl}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${doc.summary}">title</h5>
+                            <a th:href="${doc.web_url}" class="btn btn-primary">Read More..</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+<div th:replace="fragments :: footer"/>
+</body>
+</html>
